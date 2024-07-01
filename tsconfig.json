@@ -25,8 +25,10 @@
             "~components/*": ["./components/*"],
             "~contexts": ["./contexts"],
             "~hooks": ["./hooks"],
+            "~pages": ["./pages"],
             "~styles": ["./styles"],
-            "~types": ["./types"]
+            "~types": ["./types"],
+            "~utils": ["./utils"]
         }
     },
     "include": ["src"],
