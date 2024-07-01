@@ -22,6 +22,9 @@
 
         "baseUrl": "./src",
         "paths": {
+            "~contexts": ["./contexts"],
+            "~hooks": ["./hooks"],
+            "~styles": ["./styles"],
             "~types": ["./types"]
         }
     },
