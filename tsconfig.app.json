@@ -24,6 +24,7 @@
         "paths": {
             "~components/*": ["./components/*"],
             "~contexts": ["./contexts"],
+            "~pages": ["./pages"],
             "~hooks": ["./hooks"],
             "~styles": ["./styles"],
             "~types": ["./types"],

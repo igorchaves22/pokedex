@@ -1,10 +1,11 @@
-import { PageLayout } from "~components/molecules";
+import { RouterProvider } from "react-router-dom";
 import { ThemeContextProvider } from "~contexts";
+import { router } from "~utils";
 
 export function App() {
     return (
         <ThemeContextProvider>
-            <PageLayout>Pokedex</PageLayout>
+            <RouterProvider router={router} />
         </ThemeContextProvider>
     );
 }
