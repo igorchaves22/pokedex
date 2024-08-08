@@ -22,9 +22,11 @@
 
         "baseUrl": "./src",
         "paths": {
+            "~assets/*": ["./assets/*"],
             "~components/*": ["./components/*"],
             "~contexts": ["./contexts"],
             "~pages": ["./pages"],
+            "~services": ["./services"],
             "~hooks": ["./hooks"],
             "~styles": ["./styles"],
             "~types": ["./types"],

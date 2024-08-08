@@ -18,15 +18,17 @@
     },
     "plugins": ["@typescript-eslint", "react", "react-hooks", "react-refresh", "eslint-plugin-import-helpers"],
     "rules": {
-        "indent": ["error", 4],
+        "indent": ["error", 4, { "ignoredNodes": ["ConditionalExpression"] }],
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "double"],
         "semi": ["error", "always"],
+        // "multiline-ternary": ["error", "always-multiline"],
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "react-refresh/only-export-components": "warn",
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/no-empty-object-type": "off",
+        "react/no-unescaped-entities": "off",
         "prettier/prettier": ["error"],
         "import-helpers/order-imports": [
             "warn",

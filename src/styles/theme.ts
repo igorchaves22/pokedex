@@ -1,3 +1,5 @@
+import { keyframes } from "styled-components";
+
 export const themeValues = {
     color: {
         brand: "#d71313",
@@ -44,5 +46,27 @@ export const themeValues = {
         xl: "normal 500 1.5rem / normal 'Montserrat', 'sans-serif'",
         xxl: "normal 700 1.875rem / normal 'Montserrat', 'sans-serif'",
         mega: "normal 700 2.25rem / normal 'Montserrat', 'sans-serif'"
+    },
+    border: {
+        size: {
+            primary: "0.125rem"
+        },
+        radius: {
+            primary: "0.5rem",
+            secondary: "3rem"
+        }
+    },
+    time: {
+        primary: "0.25s"
+    },
+    animation: {
+        rotate: keyframes`
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        `
     }
 };
