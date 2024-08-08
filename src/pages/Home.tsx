@@ -1,7 +1,6 @@
 import bgImage from "~assets/image/pokeballs.png";
 import { ContentContainer, Font } from "~components/atoms";
 import { PageLayout, PokemonList } from "~components/molecules";
-import { PokemonSecondaryCard } from "~components/molecules/PokemonSecondaryCard";
 import { useFetchRandomPokemonList } from "~hooks";
 
 export function Home() {
