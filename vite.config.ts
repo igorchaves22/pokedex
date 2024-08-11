@@ -10,7 +10,10 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            "~types": resolve(__dirname, "./src/types")
+            "~components": resolve(__dirname, "./src/components"),
+            "~pages": resolve(__dirname, "./src/pages"),
+            "~types": resolve(__dirname, "./src/types"),
+            "~utils": resolve(__dirname, "./src/utils")
         }
     }
 });

@@ -22,7 +22,10 @@
 
         "baseUrl": "./src",
         "paths": {
-            "~types": ["./types"]
+            "~components/*": ["./components/*"],
+            "~pages": ["./pages"],
+            "~types": ["./types"],
+            "~utils": ["./utils"]
         }
     },
     "include": ["src"]
