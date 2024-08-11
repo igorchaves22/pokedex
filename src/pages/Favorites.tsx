@@ -1,3 +1,5 @@
+import { PageLayout } from "~components/molecules";
+
 export function Favorites() {
-    return <h1>Favorites</h1>;
+    return <PageLayout $placeContent={{ align: "start" }}>Favorites</PageLayout>;
 }

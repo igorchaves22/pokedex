@@ -1,3 +1,5 @@
+import { PageLayout } from "~components/molecules";
+
 export function Home() {
-    return <h1>Home</h1>;
+    return <PageLayout>Home</PageLayout>;
 }

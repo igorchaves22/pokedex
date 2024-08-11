@@ -1,3 +1,5 @@
+import { PageLayout } from "~components/molecules";
+
 export function Page404() {
-    return <h1>Page404</h1>;
+    return <PageLayout>Page404</PageLayout>;
 }

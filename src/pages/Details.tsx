@@ -1,3 +1,5 @@
+import { PageLayout } from "~components/molecules";
+
 export function Details() {
-    return <h1>Details</h1>;
+    return <PageLayout $placeContent={{ align: "start" }}>Details</PageLayout>;
 }

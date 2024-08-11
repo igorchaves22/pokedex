@@ -1,3 +1,5 @@
+import { PageLayout } from "~components/molecules";
+
 export function Catalog() {
-    return <h1>Catalog</h1>;
+    return <PageLayout $placeContent={{ align: "start" }}>Catalog</PageLayout>;
 }
