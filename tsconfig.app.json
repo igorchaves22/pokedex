@@ -23,9 +23,11 @@
         "baseUrl": "./src",
         "paths": {
             "~components/*": ["./components/*"],
+            "~assets/*": ["./assets/*"],
             "~contexts": ["./contexts"],
             "~hooks": ["./hooks"],
             "~pages": ["./pages"],
+            "~services": ["./services"],
             "~styles": ["./styles"],
             "~types": ["./types"],
             "~utils": ["./utils"]

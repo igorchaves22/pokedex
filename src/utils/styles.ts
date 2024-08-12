@@ -7,6 +7,8 @@ import {
     PlaceType,
     SpacingType,
     UniqueAlignPropsType,
+    UniqueBackgroundPositionPropsType,
+    UniqueColorPropsType,
     UniqueSpacingPropsType
 } from "~types";
 
@@ -77,6 +79,37 @@ const setPlace = (place?: DeepPartial<PlaceType>) => {
     return "center";
 };
 
+const setBackgroundPosition = (position?: DeepPartial<BaseStylePropsType["background"]["position"]>) => {
+    const getPosition = (value?: UniqueBackgroundPositionPropsType) => {
+        if (typeof value === "string") {
+            return value;
+        } else if (typeof value === "number") {
+            return `${value}%`;
+        }
+
+        return "center";
+    };
+
+    if (typeof position === "string") {
+        return getPosition(position);
+    } else if (typeof position === "object") {
+        const x = getPosition(position.x);
+        const y = getPosition(position.y);
+
+        return `${x} ${y}`;
+    }
+
+    return "center";
+};
+
+const setColor = (theme: ITheme, color?: UniqueColorPropsType) => {
+    if (!color || color === "transparent") {
+        return "transparent";
+    }
+
+    return theme.color[color];
+};
+
 export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
     const widthStyle = () => {
         const { $width } = styleProps;
@@ -118,6 +151,73 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             `
         );
     };
+    const borderTransparentStyle = () => {
+        const { $borderTransparent } = styleProps;
+
+        return applyStyle(
+            $borderTransparent,
+            css`
+                ${$borderTransparent === "top" &&
+                css`
+                    border-top-color: transparent;
+                `}
+                ${$borderTransparent === "right" &&
+                css`
+                    border-right-color: transparent;
+                `}
+                ${$borderTransparent === "bottom" &&
+                css`
+                    border-bottom-color: transparent;
+                `}
+                ${$borderTransparent === "left" &&
+                css`
+                    border-left-color: transparent;
+                `}
+            `
+        );
+    };
+    const borderStyle = () => {
+        const { $border } = styleProps;
+
+        return applyStyle(
+            $border,
+            css`
+                border: ${$border === "none"
+                    ? $border
+                    : `${theme.border.size[$border?.size ?? "primary"]} solid ${theme.color[$border?.color ?? "primary"]}`};
+            `
+        );
+    };
+    const borderRadiusStyle = () => {
+        const { $borderRadius } = styleProps;
+
+        return applyStyle(
+            $borderRadius,
+            css`
+                border-radius: ${$borderRadius === "100%" ? $borderRadius : theme.border.radius[$borderRadius!]};
+            `
+        );
+    };
+    const listStyle = () => {
+        const { $listStyle } = styleProps;
+
+        return applyStyle(
+            $listStyle,
+            css`
+                list-style: ${$listStyle};
+            `
+        );
+    };
+    const objectFitStyle = () => {
+        const { $objectFit } = styleProps;
+
+        return applyStyle(
+            $objectFit,
+            css`
+                object-fit: ${$objectFit};
+            `
+        );
+    };
     const displayStyle = () => {
         const { $display } = styleProps;
 
@@ -135,6 +235,26 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             $gridColumn,
             css`
                 grid: min-content / ${setGridColumn(theme, $gridColumn)};
+            `
+        );
+    };
+    const flexDirectionStyle = () => {
+        const { $flexDirection } = styleProps;
+
+        return applyStyle(
+            $flexDirection,
+            css`
+                flex-direction: ${$flexDirection};
+            `
+        );
+    };
+    const flexWrapStyle = () => {
+        const { $flexWrap } = styleProps;
+
+        return applyStyle(
+            $flexWrap,
+            css`
+                flex-wrap: ${$flexWrap};
             `
         );
     };
@@ -168,17 +288,128 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             `
         );
     };
+    const backgroundStyle = () => {
+        const { $background } = styleProps;
+        const color = applyStyle(
+            $background?.color,
+            css`
+                background-color: ${setColor(theme, $background?.color)};
+            `
+        );
+        const image = applyStyle(
+            $background?.image,
+            css`
+                background-image: ${`url(${$background?.image})`};
+                background-repeat: no-repeat;
+            `
+        );
+        const position = applyStyle(
+            $background?.position,
+            css`
+                background-position: ${setBackgroundPosition($background?.position)};
+            `
+        );
+        const size = applyStyle(
+            $background?.size,
+            css`
+                background-size: ${$background?.size};
+            `
+        );
+
+        return css`
+            ${color};
+            ${image};
+            ${position};
+            ${size};
+        `;
+    };
+    const colorStyle = () => {
+        const { $color } = styleProps;
+
+        return applyStyle(
+            $color,
+            css`
+                color: ${theme.color[$color!]};
+            `
+        );
+    };
+    const fontStyle = () => {
+        const { $font } = styleProps;
+
+        return applyStyle(
+            $font,
+            css`
+                font: ${theme.font[$font!]};
+            `
+        );
+    };
+    const textAlignStyle = () => {
+        const { $textAlign } = styleProps;
+
+        return applyStyle(
+            $textAlign,
+            css`
+                text-align: ${$textAlign};
+            `
+        );
+    };
+    const textDecorationStyle = () => {
+        const { $textDecoration } = styleProps;
+
+        return applyStyle(
+            $textDecoration,
+            css`
+                text-decoration: ${$textDecoration};
+            `
+        );
+    };
+    const textTransformStyle = () => {
+        const { $textTransform } = styleProps;
+
+        return applyStyle(
+            $textTransform,
+            css`
+                text-transform: ${$textTransform};
+            `
+        );
+    };
+    const animationStyle = () => {
+        const { $animation } = styleProps;
+
+        return applyStyle(
+            $animation,
+            css`
+                animation: ${theme.animation[$animation?.name ?? "simpleRender"]}
+                    ${theme.time[$animation?.duration ?? "primary"]} ease-in-out;
+                animation-iteration-count: ${$animation?.iteration};
+            `
+        );
+    };
 
     return css`
         ${widthStyle};
         ${heightStyle};
         ${minHeightStyle};
         ${paddingStyle};
+        ${borderStyle};
+        ${borderTransparentStyle};
+        ${borderRadiusStyle};
+        ${listStyle};
+        ${objectFitStyle};
         ${displayStyle};
         ${gridColumnStyle};
+        ${flexDirectionStyle};
+        ${flexWrapStyle};
         ${gapStyle};
         ${placeContentStyle};
         ${placeItemsStyle};
+        ${backgroundStyle};
+        ${colorStyle};
+        ${fontStyle};
+        ${textAlignStyle};
+        ${textDecorationStyle};
+        ${textTransformStyle};
+        ${animationStyle};
     `;
 };
 
