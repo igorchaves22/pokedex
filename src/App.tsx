@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { RouterProvider } from "react-router-dom";
-import { ScreenContextProvider, ThemeContextProvider } from "~contexts";
+import { FavoritesContextProvider, ScreenContextProvider, ThemeContextProvider } from "~contexts";
 import { router } from "~utils";
 
 const queryClient = new QueryClient();
@@ -10,7 +10,9 @@ export function App() {
         <ThemeContextProvider>
             <ScreenContextProvider>
                 <QueryClientProvider client={queryClient}>
-                    <RouterProvider router={router} />
+                    <FavoritesContextProvider>
+                        <RouterProvider router={router} />
+                    </FavoritesContextProvider>
                 </QueryClientProvider>
             </ScreenContextProvider>
         </ThemeContextProvider>

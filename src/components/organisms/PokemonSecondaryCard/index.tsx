@@ -1,5 +1,7 @@
+import { useContext } from "react";
 import { Container, Font, Icon, Link } from "~components/atoms";
 import { Figure, IconButton } from "~components/molecules";
+import { FavoritesContext } from "~contexts";
 import { IPokemonSecondaryCard, IStyleProps } from "~types";
 import { replaceHyphensWithSpaces } from "~utils";
 
@@ -8,6 +10,8 @@ interface IPokemonSecondaryCardProps extends Pick<IStyleProps, "$animation"> {
 }
 
 export function PokemonSecondaryCard({ pokemon, $animation }: IPokemonSecondaryCardProps) {
+    const { icon, handleClick } = useContext(FavoritesContext);
+
     return (
         <Container
             tag="li"
@@ -45,9 +49,9 @@ export function PokemonSecondaryCard({ pokemon, $animation }: IPokemonSecondaryC
                     />
                 </Link>
                 <IconButton
-                    icon="BookBookmark"
+                    icon={icon(pokemon.id)}
                     button={{
-                        onClick: () => null
+                        onClick: () => handleClick(pokemon)
                     }}
                     iconStyles={{
                         $iconSize: "tertiary"
