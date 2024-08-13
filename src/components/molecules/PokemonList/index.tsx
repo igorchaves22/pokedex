@@ -15,6 +15,7 @@ export function PokemonList({ loading, error, count, listStyle, children }: IPok
             tag="section"
             $display="flex"
             $flexDirection="column"
+            $gap={{ row: "md" }}
             $placeItems="center"
         >
             {loading ? (
@@ -23,7 +24,16 @@ export function PokemonList({ loading, error, count, listStyle, children }: IPok
                 <Font tag="p">No Pokémon found!</Font>
             ) : (
                 <>
-                    {renderElement(typeof count === "number", <Font tag="p">Total number of Pokémon: {count}</Font>)}
+                    {renderElement(
+                        typeof count === "number",
+                        <Font
+                            tag="p"
+                            $font="xs"
+                            $textAlign="left"
+                        >
+                            Total number of Pokémon: {count}
+                        </Font>
+                    )}
                     <Container
                         tag="ul"
                         $display="flex"

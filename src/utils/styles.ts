@@ -4,6 +4,7 @@ import {
     DeepPartial,
     IStyleProps,
     ITheme,
+    OverflowType,
     PlaceType,
     SpacingType,
     UniqueAlignPropsType,
@@ -46,6 +47,18 @@ const setSpacing = (theme: ITheme, spacing?: DeepPartial<SpacingType>) => {
     }
 
     return 0;
+};
+
+const setOverflow = (value?: DeepPartial<OverflowType>) => {
+    if (typeof value === "string") {
+        return value;
+    } else if (typeof value === "object") {
+        const { x, y } = value;
+
+        return `${x ?? "hidden"} ${y ?? "hidden"}`;
+    }
+
+    return "hidden";
 };
 
 const setGridColumn = (theme: ITheme, column?: DeepPartial<BaseStylePropsType["gridColumn"]>) => {
@@ -218,6 +231,56 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             `
         );
     };
+    const overflowStyle = () => {
+        const { $overflow } = styleProps;
+
+        return applyStyle(
+            $overflow,
+            css`
+                overflow: ${setOverflow($overflow)};
+            `
+        );
+    };
+    const outlineStyle = () => {
+        const { $outline } = styleProps;
+
+        return applyStyle(
+            $outline,
+            css`
+                outline: ${$outline};
+            `
+        );
+    };
+    const positionStyle = () => {
+        const { $position } = styleProps;
+
+        return applyStyle(
+            $position,
+            css`
+                position: ${$position};
+            `
+        );
+    };
+    const zIndexStyle = () => {
+        const { $zIndex } = styleProps;
+
+        return applyStyle(
+            $zIndex,
+            css`
+                z-index: ${$zIndex};
+            `
+        );
+    };
+    const insetStyle = () => {
+        const { $inset } = styleProps;
+
+        return applyStyle(
+            $inset,
+            css`
+                inset: ${setSpacing(theme, $inset)};
+            `
+        );
+    };
     const displayStyle = () => {
         const { $display } = styleProps;
 
@@ -323,6 +386,16 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             ${size};
         `;
     };
+    const filterDropShadowStyle = () => {
+        const { $filterDropShadow } = styleProps;
+
+        return applyStyle(
+            $filterDropShadow,
+            css`
+                filter: drop-shadow(0 0 0.5rem ${$filterDropShadow});
+            `
+        );
+    };
     const colorStyle = () => {
         const { $color } = styleProps;
 
@@ -340,6 +413,16 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             $font,
             css`
                 font: ${theme.font[$font!]};
+            `
+        );
+    };
+    const iconStyle = () => {
+        const { $iconSize } = styleProps;
+
+        return applyStyle(
+            $iconSize,
+            css`
+                font-size: ${theme.icon[$iconSize!]};
             `
         );
     };
@@ -373,6 +456,34 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             `
         );
     };
+    const cursorStyle = () => {
+        const { $cursor } = styleProps;
+
+        return applyStyle(
+            $cursor,
+            css`
+                cursor: ${$cursor};
+            `
+        );
+    };
+    const scrollBarStyle = () => {
+        const { $scrollBar } = styleProps;
+
+        return applyStyle(
+            $scrollBar,
+            css`
+                &::-webkit-scrollbar {
+                    width: ${theme.border.size[$scrollBar?.size ?? "primary"]};
+                    background-color: ${setColor(theme, $scrollBar?.bgColor)};
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: ${setColor(theme, $scrollBar?.color)};
+                    border-radius: ${theme.border.radius.secondary};
+                }
+            `
+        );
+    };
     const animationStyle = () => {
         const { $animation } = styleProps;
 
@@ -382,6 +493,13 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
                 animation: ${theme.animation[$animation?.name ?? "simpleRender"]}
                     ${theme.time[$animation?.duration ?? "primary"]} ease-in-out;
                 animation-iteration-count: ${$animation?.iteration};
+                animation-fill-mode: ${$animation?.fillMode ?? "none"};
+
+                ${$animation?.delay &&
+                css`
+                    opacity: 0;
+                    animation-delay: ${$animation?.delay}s;
+                `}
             `
         );
     };
@@ -396,6 +514,11 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
         ${borderRadiusStyle};
         ${listStyle};
         ${objectFitStyle};
+        ${overflowStyle};
+        ${outlineStyle};
+        ${positionStyle};
+        ${zIndexStyle};
+        ${insetStyle};
         ${displayStyle};
         ${gridColumnStyle};
         ${flexDirectionStyle};
@@ -404,11 +527,15 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
         ${placeContentStyle};
         ${placeItemsStyle};
         ${backgroundStyle};
+        ${filterDropShadowStyle};
         ${colorStyle};
         ${fontStyle};
+        ${iconStyle};
         ${textAlignStyle};
         ${textDecorationStyle};
         ${textTransformStyle};
+        ${cursorStyle};
+        ${scrollBarStyle};
         ${animationStyle};
     `;
 };

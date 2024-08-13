@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "~components/atoms";
+import { CatalogContextProvider, FilterContextProvider } from "~contexts";
 import { Catalog, Details, Favorites, Home, Page404 } from "~pages";
 
 type routerType = ReturnType<typeof createBrowserRouter>;
@@ -38,7 +39,13 @@ export const router: routerType = createBrowserRouter([
                 children: [
                     {
                         path: "",
-                        element: <Catalog />
+                        element: (
+                            <CatalogContextProvider>
+                                <FilterContextProvider>
+                                    <Catalog />
+                                </FilterContextProvider>
+                            </CatalogContextProvider>
+                        )
                     },
                     {
                         path: ":id",

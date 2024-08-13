@@ -12,6 +12,7 @@ export type ThemeBorderSizeType = keyof ThemeValuesType["border"]["size"];
 export type ThemeBorderRadiusType = keyof ThemeValuesType["border"]["radius"];
 export type ThemeTimeType = keyof ThemeValuesType["time"];
 export type ThemeAnimationType = keyof ThemeValuesType["animation"];
+export type ThemeIconType = keyof ThemeValuesType["icon"];
 
 export interface ITheme extends Omit<ThemeValuesType, "color"> {
     color: {

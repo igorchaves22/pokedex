@@ -1,4 +1,5 @@
 import { createGlobalStyle, css } from "styled-components";
+import { generateStyles } from "~utils";
 
 export const GlobalStyles = createGlobalStyle`
     ${({ theme }) => css`
@@ -10,7 +11,15 @@ export const GlobalStyles = createGlobalStyle`
         }
 
         html {
-            background-color: ${theme.color.main};
+            ${generateStyles(theme, {
+                $background: {
+                    color: "main"
+                },
+                $scrollBar: {
+                    size: "secondary",
+                    color: "brand"
+                }
+            })}
         }
     `}
 

@@ -10,6 +10,7 @@ export function PokemonPrimaryCard({ name, sprites }: IPokemonPrimaryCardProps) 
             $width={2.25}
             $height={2.25}
             $listStyle="none"
+            $overflow="hidden"
             $media={{
                 breakpoint: "md",
                 styles: {

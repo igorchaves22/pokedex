@@ -6,15 +6,17 @@ import {
     ThemeBreakpointType,
     ThemeColorType,
     ThemeFontType,
+    ThemeIconType,
     ThemeSpacingType,
     ThemeTimeType
 } from "./theme";
 
-export type UniqueSizePropsType = number | "auto" | "100%" | "100vh" | "min-content" | "max-content";
+export type UniqueSizePropsType = number | "auto" | "100%" | "100vh" | "min-content" | "max-content" | "1fr";
 export type UniqueColorPropsType = "transparent" | ThemeColorType;
 export type UniqueSpacingPropsType = "auto" | "100%" | ThemeSpacingType;
 export type UniqueBackgroundPositionPropsType = number | "center" | "top" | "right" | "bottom" | "left";
 export type UniqueAlignPropsType = "center" | "start" | "end" | "space-between" | "space-evenly";
+export type UniqueOverflowPropsType = "hidden" | "scroll";
 export type SpacingType =
     | UniqueSpacingPropsType
     | {
@@ -22,6 +24,11 @@ export type SpacingType =
       }
     | {
           [key in "row" | "column"]: ThemeSpacingType;
+      };
+export type OverflowType =
+    | UniqueOverflowPropsType
+    | {
+          [key in "x" | "y"]: UniqueOverflowPropsType;
       };
 export type PlaceType =
     | UniqueAlignPropsType
@@ -43,6 +50,11 @@ export type BaseStylePropsType = {
     borderRadius: "100%" | ThemeBorderRadiusType;
     listStyle: "none";
     objectFit: "contain";
+    overflow: OverflowType;
+    outline: "none";
+    position: "relative" | "absolute" | "fixed";
+    zIndex: number;
+    inset: SpacingType;
     display: "grid" | "flex" | "block";
     gridColumn: "max_width" | UniqueSizePropsType | UniqueSizePropsType[];
     flexDirection: "row" | "column";
@@ -60,15 +72,25 @@ export type BaseStylePropsType = {
               };
         size: string;
     };
+    filterDropShadow: string;
     color: ThemeColorType;
     font: ThemeFontType;
+    iconSize: ThemeIconType;
     textAlign: "center" | "justify" | "left";
     textDecoration: "none";
     textTransform: "capitalize";
+    cursor: "pointer";
+    scrollBar: {
+        size: ThemeBorderSizeType;
+        color: UniqueColorPropsType;
+        bgColor: UniqueColorPropsType;
+    };
     animation: {
         name: ThemeAnimationType;
         duration: ThemeTimeType;
         iteration: "infinite" | "normal";
+        fillMode: "forwards";
+        delay: number;
     };
 };
 export type StylePropsType<T> = {
