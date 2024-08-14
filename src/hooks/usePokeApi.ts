@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import {
+    getDetails,
     getFilterDataFromApi,
     getPokemonDataFromApi,
     getPokemonList,
@@ -9,7 +10,7 @@ import {
     getRandomPokemonList,
     getSpeciesDataFromApi
 } from "~services";
-import { FilterType, ICatalog, IPokemonPrimaryCard, IPokemonSecondaryCard } from "~types";
+import { FilterType, ICatalog, IDetails, IPokemonPrimaryCard, IPokemonSecondaryCard } from "~types";
 import { formatPokemonSecondaryCard, getIdFromUrl } from "~utils";
 
 export const useFetchFilter = (url: string | null) => {
@@ -94,10 +95,10 @@ export const useFetchPokemon = (name: string | null) => {
         async () => {
             const pokemon = await getPokemonDataFromApi(name!);
             const speciesId = getIdFromUrl(pokemon.species.url);
-            const { color } = await getSpeciesDataFromApi(speciesId);
+            const species = await getSpeciesDataFromApi(speciesId);
             const data = formatPokemonSecondaryCard({
                 ...pokemon,
-                color
+                ...species
             });
 
             return data;
@@ -121,6 +122,23 @@ export const useFetchPokemonList = (offset: number, limit: number) => {
         },
         {
             retry: false
+        }
+    );
+
+    return { isLoading, isError, data };
+};
+
+export const useFetchDetails = (name: string) => {
+    const { isLoading, isError, data } = useQuery<IDetails>(
+        ["details", name],
+        async () => {
+            const data = await getDetails(name);
+
+            return data;
+        },
+        {
+            retry: false,
+            enabled: !!name
         }
     );
 

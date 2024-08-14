@@ -4,3 +4,4 @@ export { PokemonPrimaryCard } from "./PokemonPrimaryCard";
 export { IconButton } from "./IconButton";
 export { FilterBox } from "./FilterBox";
 export { Figure } from "./Figure";
+export { PokemonInfoSection } from "./PokemonInfoSection";
