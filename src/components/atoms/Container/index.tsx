@@ -2,7 +2,7 @@ import { IChildren, IStyleProps } from "~types";
 import { SetStyledComponent } from "~utils";
 
 interface IContainerProps extends IChildren, IStyleProps {
-    tag: "header" | "main" | "section" | "nav" | "ul" | "li" | "figure";
+    tag: "header" | "main" | "footer" | "section" | "nav" | "ul" | "li" | "figure";
 }
 
 export function Container({ tag, children, ...rest }: IContainerProps) {

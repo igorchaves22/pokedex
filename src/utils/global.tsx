@@ -1,6 +1,6 @@
 import * as PhosphorIconReact from "@phosphor-icons/react";
 import { ReactElement } from "react";
-import { FilterType } from "~types";
+import { FilterType, PhosphorIconType } from "~types";
 
 export const PhosphorIcon = PhosphorIconReact;
 
@@ -34,3 +34,25 @@ export const replaceHyphensWithSpaces = (value: string) => {
 
     return replace;
 };
+
+export const myLinks: {
+    url: string;
+    icon: PhosphorIconType;
+    title: string;
+}[] = [
+    {
+        url: "mailto:contato.igorgabriel@hotmail.com",
+        icon: "EnvelopeSimple",
+        title: "Email"
+    },
+    {
+        url: "https://www.linkedin.com/in/igorchaves22",
+        icon: "LinkedinLogo",
+        title: "LinkedIn"
+    },
+    {
+        url: "https://github.com/igorchaves22",
+        icon: "GithubLogo",
+        title: "GitHub"
+    }
+];
