@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Footer } from "~components/molecules";
-import { Navbar } from "~components/organisms";
+import { Navbar, ScrollToTopButton } from "~components/organisms";
 import { IChildren } from "~types";
 
 interface IRootLayoutProps extends Partial<IChildren> {}
@@ -10,6 +10,7 @@ export function RootLayout({ children }: IRootLayoutProps) {
         <>
             <Navbar />
             {children ?? <Outlet />}
+            <ScrollToTopButton />
             <Footer />
         </>
     );
