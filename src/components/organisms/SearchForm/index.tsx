@@ -42,6 +42,9 @@ export function SearchForm() {
                 $height="min-content"
                 $border="none"
                 $outline="none"
+                $background={{
+                    color: "transparent"
+                }}
                 $color="primary"
                 $font="sm"
                 {...register("search")}
