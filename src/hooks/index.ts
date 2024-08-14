@@ -5,3 +5,4 @@ export * from "./useFilterBox";
 export * from "./usePagination";
 export * from "./useSearchForm";
 export * from "./useDetails";
+export * from "./useNavbar";

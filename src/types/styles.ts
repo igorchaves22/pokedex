@@ -11,7 +11,7 @@ import {
     ThemeTimeType
 } from "./theme";
 
-export type UniqueSizePropsType = number | "auto" | "100%" | "100vh" | "min-content" | "max-content" | "1fr";
+export type UniqueSizePropsType = number | "auto" | "100%" | "100vh" | "min-content" | "max-content" | "1fr" | "2fr";
 export type UniqueColorPropsType = "transparent" | ThemeColorType;
 export type UniqueSpacingPropsType = "auto" | "100%" | ThemeSpacingType;
 export type UniqueBackgroundPositionPropsType = number | "center" | "top" | "right" | "bottom" | "left";
@@ -39,6 +39,7 @@ export type BaseStylePropsType = {
     width: UniqueSizePropsType;
     height: UniqueSizePropsType;
     minHeight: UniqueSizePropsType;
+    margin: SpacingType;
     padding: SpacingType;
     border:
         | "none"

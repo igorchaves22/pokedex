@@ -164,6 +164,16 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
             `
         );
     };
+    const marginStyle = () => {
+        const { $margin } = styleProps;
+
+        return applyStyle(
+            $margin,
+            css`
+                margin: ${setSpacing(theme, $margin)};
+            `
+        );
+    };
     const borderTransparentStyle = () => {
         const { $borderTransparent } = styleProps;
 
@@ -508,6 +518,7 @@ export const generateStyles = (theme: ITheme, styleProps: IStyleProps) => {
         ${widthStyle};
         ${heightStyle};
         ${minHeightStyle};
+        ${marginStyle};
         ${paddingStyle};
         ${borderStyle};
         ${borderTransparentStyle};

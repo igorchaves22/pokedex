@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { RootLayout } from "~components/atoms";
+import { RootLayout } from "~components/templates";
 import { CatalogContextProvider, FilterContextProvider } from "~contexts";
 import { Catalog, Details, Favorites, Home, Page404 } from "~pages";
 
