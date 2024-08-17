@@ -39,13 +39,13 @@ export const themeValues = {
         ultra: "10rem"
     },
     font: {
-        xs: "normal 500 0.75rem / normal 'Montserrat', 'sans-serif'",
-        sm: "normal 500 0.875rem / normal 'Montserrat', 'sans-serif'",
-        md: "normal 400 1rem / normal 'Montserrat', 'sans-serif'",
-        lg: "normal 500 1.25rem / normal 'Montserrat', 'sans-serif'",
-        xl: "normal 500 1.5rem / normal 'Montserrat', 'sans-serif'",
-        xxl: "normal 700 1.875rem / normal 'Montserrat', 'sans-serif'",
-        mega: "normal 700 2.25rem / normal 'Montserrat', 'sans-serif'"
+        xs: "normal 500 0.75rem/normal 'Montserrat','sans-serif'",
+        sm: "normal 500 0.875rem/normal 'Montserrat','sans-serif'",
+        md: "normal 400 1rem/normal 'Montserrat','sans-serif'",
+        lg: "normal 500 1.25rem/normal 'Montserrat','sans-serif'",
+        xl: "normal 500 1.5rem/normal 'Montserrat','sans-serif'",
+        xxl: "normal 700 1.875rem/normal 'Montserrat','sans-serif'",
+        mega: "normal 700 2.25rem/normal 'Montserrat','sans-serif'"
     },
     border: {
         size: {
